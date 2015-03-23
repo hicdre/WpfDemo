@@ -1,0 +1,102 @@
+﻿<Window x:Class="WpfDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UI="clr-namespace:UI"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        x:Name="SMainWindow"
+        Title="MainWindow"
+        Width="525"
+        Height="350">
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="assets/buttons.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Window.Resources>
+  <i:Interaction.Behaviors>
+    <UI:BorderlessWindowBehavior />
+  </i:Interaction.Behaviors>
+  <Grid x:Name="LayoutRoot">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <StackPanel HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+      <StackPanel HorizontalAlignment="Right"
+                  VerticalAlignment="Top"
+                  Orientation="Horizontal">
+        <Button x:Name="MinimizeButton"
+                Click="Minimize"
+                IsTabStop="False"
+                RenderOptions.EdgeMode="Aliased"
+                Style="{StaticResource GitHubChromeButton}"
+                ToolTip="Minimize">
+
+          <Path Margin="12,15,12,7"
+                Data="M0,0L0,2 7.999,2 7.999,0 0,0z"
+                Fill="{Binding Foreground,
+                               RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+        </Button>
+        <Grid>
+          <Button x:Name="MaximizeButton"
+                  Click="Restore"
+                  IsTabStop="False"
+                  RenderOptions.EdgeMode="Aliased"
+                  Style="{StaticResource GitHubChromeButton}"
+                  ToolTip="Maximize">
+            <Path Margin="10,8"
+                  Data="M0,9.999L0,0 9.998,0 9.998,9.999 0,9.999z M8.998,3L1,3 1,8.999 8.999,8.999 8.999,3z"
+                  Fill="{Binding Foreground,
+                                 RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+          </Button>
+          <Button x:Name="RestoreButton"
+                  Click="Restore"
+                  IsTabStop="False"
+                  RenderOptions.EdgeMode="Aliased"
+                  Style="{StaticResource GitHubChromeButton}"
+                  ToolTip="Restore"
+                  Visibility="Hidden">
+            <Path Margin="10,8"
+                  Data="M8,6.999L8,9.999 0,9.999 0,3 2,3 2,0 9.999,0 9.999,6.999 8,6.999z M1,8.999L7,8.999 7,4.999 1,4.999 1,8.999z M8.999,2L3,2 3,3 8,3 8,5.999 8.999,5.999 8.999,2z"
+                  Fill="{Binding Foreground,
+                                 RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+          </Button>
+        </Grid>
+        <Button x:Name="CloseButton"
+                Click="Close"
+                IsTabStop="False"
+                RenderOptions.EdgeMode="Aliased"
+                Style="{StaticResource GitHubChromeCloseButton}"
+                ToolTip="Close">
+          <Path Margin="10,8"
+                Data="M10.009,1.704L8.331,0.026 5.03,3.327 1.703,0 0,1.704 3.326,5.031 0.025,8.332 1.703,10.009 5.004,6.708 8.305,10.009 10.009,8.305 6.708,5.005"
+                Fill="{Binding Foreground,
+                               RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+        </Button>
+      </StackPanel>
+    </StackPanel>
+
+    <Grid x:Name="ContentGrid" Grid.Row="1">
+      <ListBox x:Name="TestListBox"
+               BorderThickness="0"
+               ItemTemplate="{DynamicResource WinServiceTemplate}"
+               ItemsSource="{Binding ServiceToDisplay,
+                                     ElementName=SMainWindow}">
+        <ListBox.Resources>
+          <DataTemplate x:Key="WinServiceTemplate">
+            <Grid>
+              <Label Margin="10,0,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Content="{Binding DisplayName}" />
+            </Grid>
+          </DataTemplate>
+        </ListBox.Resources>
+
+      </ListBox>
+    </Grid>
+  </Grid>
+</Window>

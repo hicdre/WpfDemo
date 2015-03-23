@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="GitHubAccentColor">#4ea6ea</Color>
+  <SolidColorBrush x:Key="GitHubAccentBrush" SolidColorBrush.Color="{StaticResource GitHubAccentColor}"/>
+  <Color x:Key="GHTextColor">#333</Color>
+  <SolidColorBrush x:Key="GHTextBrush" SolidColorBrush.Color="{StaticResource GHTextColor}"/>
+
+  <Style x:Key="ChromeButton" Style.TargetType="{x:Type Button}">
+    <Setter Setter.Property="Control.Background" Setter.Value="#00FFFFFF" />
+    <Setter Setter.Property="Control.Foreground" Setter.Value="#FFCCCCCC" />
+    <Setter Setter.Property="Control.BorderBrush" Setter.Value="{x:Null}" />
+    <Setter Setter.Property="Control.IsTabStop" Setter.Value="False" />
+    <Setter Setter.Property="RenderOptions.EdgeMode" Setter.Value="Aliased" />
+    <Setter Setter.Property="Control.BorderThickness" Setter.Value="0" />
+    <Setter Setter.Property="Control.Padding" Setter.Value="0" />
+    <Setter Setter.Property="FrameworkElement.FocusVisualStyle" Setter.Value="{x:Null}" />
+    <Setter Setter.Property="Control.Template">
+      <Setter.Value>
+        <ControlTemplate ControlTemplate.TargetType="{x:Type ButtonBase}">
+          <Border Border.Name="Chrome" Border.BorderBrush="{TemplateBinding Control.BorderBrush}" FrameworkElement.Margin="0" Border.Background="{TemplateBinding Control.Background}" UIElement.SnapsToDevicePixels="True">
+            <ContentPresenter ContentPresenter.ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" ContentPresenter.Content="{TemplateBinding ContentControl.Content}" ContentPresenter.ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" FrameworkElement.HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" FrameworkElement.Margin="{TemplateBinding Control.Padding}" ContentPresenter.RecognizesAccessKey="True" UIElement.SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" FrameworkElement.VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="GitHubChromeButton" Style.TargetType="{x:Type Button}" Style.BasedOn="{StaticResource ChromeButton}">
+    <Style.Triggers>
+      <Trigger Trigger.Property="UIElement.IsMouseOver" Trigger.Value="True">
+        <Setter Setter.Property="Control.Foreground" Setter.Value="{StaticResource GHTextBrush}" />
+        <Setter Setter.Property="Control.Background" Setter.Value="#FFEEEEEE" />
+      </Trigger>
+      <Trigger Trigger.Property="ButtonBase.IsPressed" Trigger.Value="True">
+        <Setter Setter.Property="Control.Foreground" Setter.Value="#FFFFFFFF" />
+        <Setter Setter.Property="Control.Background" Setter.Value="{StaticResource GitHubAccentBrush}" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  <Style x:Key="GitHubChromeCloseButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ChromeButton}">  	
+  	<Style.Triggers>
+  		<Trigger Property="IsMouseOver" Value="True">
+  			<Setter Property="Foreground" Value="White"/>
+  			<Setter Property="Background" Value="#FFE04343"/>  			
+  		</Trigger>
+  		<Trigger Property="IsPressed" Value="True">
+  			<Setter Property="Foreground" Value="White"/>
+  			<Setter Property="Background" Value="#FF993D3D"/>
+  		</Trigger>
+  	</Style.Triggers>
+  	
+  </Style>
+</ResourceDictionary>
